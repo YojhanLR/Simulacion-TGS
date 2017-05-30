@@ -5,7 +5,9 @@
  */
 package view;
 
-import javax.swing.JScrollPane;
+import controller.Variable;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,21 +21,64 @@ public class ventana_principal extends javax.swing.JFrame {
      * Creates new form ventana_principal
      */
     
-    public DefaultTableModel dtm; //Definicion modelo de tabla para manipulación
-    private DefaultTableModel dtmyear;
+    private DefaultTableModel dtm; //Definicion modelo de tabla para manipulación
+    private DefaultTableModel dtmYear;
+    private DefaultListModel<String> dlmDisp;
+    private DefaultListModel<String> dlmSelec;
+    private String[] String_variables;
+//    private String[] items_disponibles;
+//    private String[] items_seleccionados;
+    
+    private ArrayList<Variable> List_variables;
     
     public ventana_principal() {
         initComponents();
-        //this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
         
-        dtm = new DefaultTableModel(new String[] {"Id","d","a","Id","d","a","Id","d","a","Matricula","Estado","Ubicacion","Conductor"},0);
-        dtmyear = new DefaultTableModel(new String[]{"Años"},0);
+        List_variables = new ArrayList(); 
+        dlmDisp = new DefaultListModel();
+        dlmSelec =  new DefaultListModel();
+        dtm = new DefaultTableModel(new String[] {},0);
+        dtmYear = new DefaultTableModel(new String[]{"Años"},0);
+        
         tableMain.setModel(dtm);
-        tableYear.setModel(dtmyear);
+        tableYear.setModel(dtmYear);
         tableMain.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
+        createVariables();
+        
+        jList_disponible.setModel(dlmDisp);
+        jList_seleccionado.setModel(dlmSelec);
     }
     
+    private void createVariables(){
+        String_variables = new String[] {"Cantidad Defunciones","Cantidad Personal Médico","Discapacitados Atentidos",
+            "Disp. Empleo Accesible","Empleo Accesible","Instituciones Accesibles","Población Participando Com.","Total Población",
+        "Total Pobl. Discapacitada","Defunciones","Defunciones disc.","Defunciones médicos", "Defunciones Miembros comunidad","Desarrollo Empleo Accesible",
+        "Desarrollo Instituciones Accesibles","Empleo Generado","Nacimientos","Nuevos Integrantes Com.","Personas con Discapacidad",
+        "Personas recuperadas","Población empleada disc","Profesionales","Salud","Sobredemanda","Demanda Personal médico","Indice Calidad de Vida"
+        ,"Interés Sociedad"};
+        
+        //Comienza a crear las variables y las añade al ArrayList
+        int i=0;
+        for (String sv : String_variables) {
+            String descripcion = sv;
+            Variable v = new Variable(descripcion,i);
+            List_variables.add(v);
+            i++;
+        }
+        //Imprime las variables
+        for(Variable temp: List_variables){
+            System.out.println(temp.getId()+"\t"+temp.getDescripcion());
+            dlmDisp.addElement(temp.getDescripcion());
+        }
+    }
+    
+//    private void beginListElement(int n, lista_variables.count() ){
+//        for(int i=0; i<n; i++){
+//        
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,18 +94,21 @@ public class ventana_principal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableMain = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         Button_listRight = new javax.swing.JButton();
         Button_listLeft = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        jList_seleccionado = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList_disponible = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Simulación");
+        setResizable(false);
 
         tableYear.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,13 +133,6 @@ public class ventana_principal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tableMain);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane3.setViewportView(jList1);
 
         jButton1.setText("Modificar Valores");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -121,58 +162,66 @@ public class ventana_principal extends javax.swing.JFrame {
             }
         });
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jList2.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jList2ValueChanged(evt);
-            }
-        });
-        jScrollPane4.setViewportView(jList2);
+        jLabel2.setText("Disponibles");
+
+        jLabel3.setText("Seleccionados");
+
+        jList_seleccionado.setToolTipText("");
+        jScrollPane4.setViewportView(jList_seleccionado);
+
+        jList_disponible.setToolTipText("");
+        jScrollPane3.setViewportView(jList_disponible);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel3)
+                .addGap(65, 65, 65))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Button_listRight)
                     .addComponent(Button_listLeft))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
-                .addGap(96, 96, 96))
+                .addGap(181, 181, 181))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
+                        .addGap(99, 99, 99)
                         .addComponent(Button_listRight)
-                        .addGap(31, 31, 31)
+                        .addGap(35, 35, 35)
                         .addComponent(Button_listLeft))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(25, 25, 25)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -184,10 +233,10 @@ public class ventana_principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -205,7 +254,7 @@ public class ventana_principal extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
@@ -220,16 +269,20 @@ public class ventana_principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void Button_listRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_listRightActionPerformed
-        // TODO add your handling code here:
+      //Envia elementos de Disponibles a seleccionados
+      for(String selectedValue: jList_disponible.getSelectedValuesList()){
+          dlmSelec.addElement(selectedValue);
+          dlmDisp.removeElement(selectedValue);
+      }
     }//GEN-LAST:event_Button_listRightActionPerformed
 
     private void Button_listLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_listLeftActionPerformed
-        // TODO add your handling code here:
+        //Envia elementos de seleccionados a Disponibles
+      for(String selectedValue: jList_seleccionado.getSelectedValuesList()){
+          dlmDisp.addElement(selectedValue);
+          dlmSelec.removeElement(selectedValue);
+      }
     }//GEN-LAST:event_Button_listLeftActionPerformed
-
-    private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jList2ValueChanged
 
     /**
      * @param args the command line arguments
@@ -272,8 +325,10 @@ public class ventana_principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JList<String> jList_disponible;
+    private javax.swing.JList<String> jList_seleccionado;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
