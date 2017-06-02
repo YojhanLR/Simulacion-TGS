@@ -88,7 +88,7 @@ public class ventana_principal extends javax.swing.JFrame {
     private void valoresPorDefecto(){
         
         for (Variable v: List_variables){
-            
+            v.setValor(0);
             switch(v.getId()){
                 case 0: v.setValor(0); break; //Cantidad Defunciones
                 case 1: v.setValor(118); break; //Cantidad Personal Médico
@@ -355,7 +355,9 @@ public class ventana_principal extends javax.swing.JFrame {
     private void crearTabla(){
         TableColumnModel columnModel = tableMain.getColumnModel();
         dtm = new DefaultTableModel(dlmSelec.toArray(),0);
+        dtmYear = new DefaultTableModel(new String[]{"Años"},0);
         tableMain.setModel(dtm);
+        tableYear.setModel(dtmYear);
         System.out.println(Arrays.toString(dlmSelec.toArray())); 
         
         ArrayList <Variable> templist = List_variables;
@@ -492,7 +494,7 @@ public class ventana_principal extends javax.swing.JFrame {
         Variable cantidadDefunciones = List_variables.get(0);
         Variable cantidadPerMedico = List_variables.get(1);
         
-        for(int i=0; i<24; i++){
+        for(int i=0; i<nYears; i++){
             totalPoblacion.setValor(totalPoblacion.getValor()+nacimientos.getValor()-defuncion.getValor());
             totalPoblacionDisc.setValor(totalPoblacionDisc.getValor()+personasconDisc.getValor()-defuncionDisc.getValor()-personasRecuperadas.getValor());
             cantidadDefunciones.setValor(cantidadDefunciones.getValor()+defuncion.getValor());
@@ -537,6 +539,22 @@ public class ventana_principal extends javax.swing.JFrame {
             }
             nivelBMaterial.setValor((porcentajeEstatusSocio.getValor()+tasaDesarrollo.getValor())/2);
             indiceCalidad.setValor((nivelBEdu.getValor()+nivelBEmocional.getValor()+nivelBFisico.getValor()+nivelBMaterial.getValor()+nivelBSocial.getValor())/5);
+            
+            
+            ArrayList<String> valoresTemp = new ArrayList();
+            
+            
+            for(Integer number: idsSelected){
+                for(Variable temp: List_variables){
+                    if(number==temp.getId()){
+                        valoresTemp.add(new DecimalFormat("#.####").format(temp.getValor()));
+                    }
+                }
+            }
+            
+            dtm.addRow(valoresTemp.toArray());
+            dtmYear.addRow(new String[]{""+(i+1)});
+        
         }
         
         //------------------------------------------------------------------------
@@ -545,7 +563,7 @@ public class ventana_principal extends javax.swing.JFrame {
         System.out.println("------------------");
         /*Imprimir variables con valores*/
         for(Variable temp: List_variables){
-            System.out.println(temp.getId()+"\t"+ new DecimalFormat("#.#####").format(temp.getValor())+"\t"+temp.getDescripcion());
+            System.out.println(temp.getId()+"\t"+ new DecimalFormat("#.####").format(temp.getValor())+"\t"+temp.getDescripcion());
             dlmDisp.addElement(temp.getDescripcion());
         }
         /*Imprimir variables con valores*/
