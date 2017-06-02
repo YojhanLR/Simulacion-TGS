@@ -54,10 +54,13 @@ public class ventana_principal extends javax.swing.JFrame {
     private void createVariables(){
         String_variables = new String[] {"Cantidad Defunciones","Cantidad Personal Médico","Discapacitados Atentidos",
             "Disp. Empleo Accesible","Empleo Accesible","Instituciones Accesibles","Población Participando Com.","Total Población",
-        "Total Pobl. Discapacitada","Defunciones","Defunciones disc.","Defunciones médicos", "Defunciones Miembros comunidad","Desarrollo Empleo Accesible",
+        "Total Pobl. Discapacitada","Defunciones","Defunciones disc.","Defunciones médicos","Desarrollo Empleo Accesible",
         "Desarrollo Instituciones Accesibles","Empleo Generado","Nacimientos","Nuevos Integrantes Com.","Personas con Discapacidad",
-        "Personas recuperadas","Población empleada disc","Profesionales","Salud","Sobredemanda","Demanda Personal médico","Indice Calidad de Vida"
-        ,"Interés Sociedad"};
+        "Personas recuperadas","Población empleada disc","Profesionales","Retiro Miembros","Salud","Sobredemanda","Demanda Personal médico","Indice Calidad de Vida"
+        ,"Interés Sociedad","Necesidad Atención","Nivel Bienestar Educativo","Nivel Bienestar Emocional","Nivel Bienestar Fisico","Nivel Bienestar Social"
+        ,"Nivel Necesidad Material","Porcentaje Eficiencia Metodos","Porcentaje Estatus Socioeconómico","Porcentaje Profesionales Salud","Promedio Amistad","Tasa Calidad Educacion",
+        "Tasa Defunciones","Tasa defuncion disc","Tasa defuncion med","Tasa desarrollo","Tasa Ambiente Laboral","Tasa Nacimiento Discapacidad","Tasa personas adquieren disc",
+        "Tasa calidad relaciones","Tasa empleados disc", "Tasa Naciemientos sin discapacidad"};
         
         //Comienza a crear las variables y las añade al ArrayList
         int i=0;
@@ -71,6 +74,49 @@ public class ventana_principal extends javax.swing.JFrame {
         for(Variable temp: List_variables){
             System.out.println(temp.getId()+"\t"+temp.getDescripcion());
             dlmDisp.addElement(temp.getDescripcion());
+        }
+    }
+    
+    private void valoresPorDefecto(){
+        
+        for (Variable v: List_variables){
+            
+            switch(v.getId()){
+                case 0: v.setValor(0); //Cantidad Defunciones
+                case 1: v.setValor(118); //Cantidad Personal Médico
+                case 2: v.setValor(20); //Discapacitados Atentidos
+                case 3: v.setValor(100); //Disp. Empleo Accesible
+                case 4: v.setValor(100); //Empleo Accesible
+                case 5: v.setValor(100); //Instituciones Accesibles
+                case 6: v.setValor(30); //Población Participando Com.
+                case 7: v.setValor(100000); //Total Población
+                case 8: v.setValor(800); //Total Pobl. Discapacitada
+                
+            }
+            
+            //Cantidad Defunciones
+            if(v.getId()==0){v.setValor(0);}
+            //Cantidad Personal Médico
+            if(v.getId()==0){v.setValor(0);}
+             //Cantidad Defunciones
+            if(v.getId()==0){v.setValor(0);}
+            //Cantidad Personal Médico
+            if(v.getId()==0){v.setValor(0);}
+             //Cantidad Defunciones
+            if(v.getId()==0){v.setValor(0);}
+            //Cantidad Personal Médico
+            if(v.getId()==0){v.setValor(0);}
+            
+            
+            
+            
+            //Tasa Nacimientos Discapacidad
+            if(v.getId()==42){v.setValor(0.0002);}
+            //Tasa Nacimientos sin Discapacidad
+            if(v.getId()==46){v.setValor(0.1548);}
+            //Total Población
+            if(v.getId()==7){v.setValor(100000);}
+
         }
     }
     
@@ -250,10 +296,10 @@ public class ventana_principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
 
