@@ -30,7 +30,7 @@ public class ventana_principal extends javax.swing.JFrame {
     private DefaultListModel<String> dlmSelec;
     private String[] String_variables;
     private ArrayList<Integer> idsSelected;
-    private int nYears = 24;
+    private int nYears = 30;
 //    private String[] items_disponibles;
 //    private String[] items_seleccionados;
     
@@ -57,6 +57,9 @@ public class ventana_principal extends javax.swing.JFrame {
         jList_seleccionado.setModel(dlmSelec);
         
         valoresPorDefecto();
+        for(Variable temp: List_variables){
+            dlmDisp.addElement(temp.getDescripcion());
+        }
     }
     
     private void createVariables(){
@@ -121,7 +124,6 @@ public class ventana_principal extends javax.swing.JFrame {
         /*Imprimir variables con valores*/
         for(Variable temp: List_variables){
             System.out.println(temp.getId()+"\t"+temp.getValor()+"\t"+temp.getDescripcion());
-            dlmDisp.addElement(temp.getDescripcion());
         }
     }
     
@@ -156,6 +158,8 @@ public class ventana_principal extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jList_disponible = new javax.swing.JList<>();
         jButton3 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -233,6 +237,20 @@ public class ventana_principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Añadir Todos");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+
+        jLabel7.setText("Vaciar lista");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -243,16 +261,6 @@ public class ventana_principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(65, 65, 65))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Button_listRight)
-                    .addComponent(Button_listLeft))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,6 +272,22 @@ public class ventana_principal extends javax.swing.JFrame {
                             .addComponent(jButton2)
                             .addComponent(jButton1))
                         .addGap(181, 181, 181))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Button_listRight)
+                    .addComponent(Button_listLeft))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(77, 77, 77))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,7 +307,11 @@ public class ventana_principal extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
@@ -564,7 +592,6 @@ public class ventana_principal extends javax.swing.JFrame {
         /*Imprimir variables con valores*/
         for(Variable temp: List_variables){
             System.out.println(temp.getId()+"\t"+ new DecimalFormat("#.####").format(temp.getValor())+"\t"+temp.getDescripcion());
-            dlmDisp.addElement(temp.getDescripcion());
         }
         /*Imprimir variables con valores*/
         
@@ -589,6 +616,22 @@ public class ventana_principal extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
        valoresPorDefecto();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // Añadir todos
+        for(int i=0; i<dlmDisp.getSize(); i++){
+            dlmSelec.addElement(dlmDisp.elementAt(i));            
+        }
+        dlmDisp.removeAllElements();
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // Vaciar lista
+        for(int i=0; i<dlmSelec.getSize(); i++){
+            dlmDisp.addElement(dlmSelec.elementAt(i));            
+        }
+        dlmSelec.removeAllElements();
+    }//GEN-LAST:event_jLabel7MouseClicked
 
     /**
      * @param args the command line arguments
@@ -636,6 +679,8 @@ public class ventana_principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JList<String> jList_disponible;
     private javax.swing.JList<String> jList_seleccionado;
     private javax.swing.JPanel jPanel1;
