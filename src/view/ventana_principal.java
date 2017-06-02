@@ -375,8 +375,25 @@ public class ventana_principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       crearTabla();
-       procedureBegin();
+        try {
+        boolean flag = true;
+        
+        while (flag){
+            nYears = Integer.parseInt(JOptionPane.showInputDialog(this, "Defina el N (número de años) en el cual se ejecutará la simulación","",JOptionPane.QUESTION_MESSAGE));
+            if(nYears >= 1){flag=false;}
+            else{
+            JOptionPane.showMessageDialog(this, "Asigne un valor entero positivo.","Información",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
+        crearTabla();
+        procedureBegin();
+        } 
+        catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Asigne un valor entero positivo.","Información",JOptionPane.ERROR_MESSAGE);
+        }
+        
+       
     }//GEN-LAST:event_jButton2ActionPerformed
     
     private void crearTabla(){
