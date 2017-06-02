@@ -31,10 +31,8 @@ public class ventana_principal extends javax.swing.JFrame {
     private String[] String_variables;
     private ArrayList<Integer> idsSelected;
     private int nYears = 30;
-//    private String[] items_disponibles;
-//    private String[] items_seleccionados;
-    
     private ArrayList<Variable> List_variables;
+    private ventana_variables ventvar;
     
     public ventana_principal() {
         initComponents();
@@ -88,7 +86,7 @@ public class ventana_principal extends javax.swing.JFrame {
         for (Variable v: List_variables){
             v.setValor(0);
             switch(v.getId()){
-                case 0: v.setValor(0); break; //Cantidad Defunciones
+                case 0: v.setValor(150); break; //Cantidad Defunciones
                 case 1: v.setValor(118); break; //Cantidad Personal Médico
                 case 2: v.setValor(20); break;//Discapacitados Atentidos
                 case 3: v.setValor(150); break;//Disp. Empleo Accesible
@@ -361,7 +359,9 @@ public class ventana_principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+            ventvar = new ventana_variables(this);
+            ventvar.setVisible(true);
+            this.setEnabled(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
