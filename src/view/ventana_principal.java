@@ -6,6 +6,7 @@
 package view;
 
 import controller.Variable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.DefaultListModel;
@@ -29,6 +30,7 @@ public class ventana_principal extends javax.swing.JFrame {
     private DefaultListModel<String> dlmSelec;
     private String[] String_variables;
     private ArrayList<Integer> idsSelected;
+    private int nYears = 24;
 //    private String[] items_disponibles;
 //    private String[] items_seleccionados;
     
@@ -91,7 +93,7 @@ public class ventana_principal extends javax.swing.JFrame {
                 case 0: v.setValor(0); break; //Cantidad Defunciones
                 case 1: v.setValor(118); break; //Cantidad Personal Médico
                 case 2: v.setValor(20); break;//Discapacitados Atentidos
-                case 3: v.setValor(100); break;//Disp. Empleo Accesible
+                case 3: v.setValor(150); break;//Disp. Empleo Accesible
                 case 4: v.setValor(150); break;//Empleo Accesible
                 case 5: v.setValor(15); break;//Instituciones Accesibles
                 case 6: v.setValor(30); break; //Población Participando Com.
@@ -107,6 +109,7 @@ public class ventana_principal extends javax.swing.JFrame {
                 case 39: v.setValor(0.0026); break;//Tasa defunciones disc
                 case 40: v.setValor(0.0015); break;//Tasa defuncion med
                 case 41: v.setValor(0.5); break;//Tasa desarrollo
+                case 42: v.setValor(0.6); break;//Tasa ambiente laboral
                 case 43: v.setValor(0.0002); break;//Tasa nacimiento con discapacidad
                 case 44: v.setValor(0.0005); break;//Tasa personas adquieren discapacidad
                 case 45: v.setValor(0.65); break;//Tasa calidad relaciones
@@ -115,11 +118,11 @@ public class ventana_principal extends javax.swing.JFrame {
             }
         }
         
-//        Imprimir variables con valores
-//        for(Variable temp: List_variables){
-//            System.out.println(temp.getId()+"\t"+temp.getValor()+"\t"+temp.getDescripcion());
-//            dlmDisp.addElement(temp.getDescripcion());
-//        }
+        /*Imprimir variables con valores*/
+        for(Variable temp: List_variables){
+            System.out.println(temp.getId()+"\t"+temp.getValor()+"\t"+temp.getDescripcion());
+            dlmDisp.addElement(temp.getDescripcion());
+        }
     }
     
 //    private void beginListElement(int n, lista_variables.count() ){
@@ -252,14 +255,15 @@ public class ventana_principal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addGap(181, 181, 181))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(171, 171, 171))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1))
+                        .addGap(181, 181, 181))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,21 +283,21 @@ public class ventana_principal extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addContainerGap())
+                .addGap(15, 15, 15))
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Simulación");
 
-        jLabel4.setText("Yojhan Leonardo Rodríguez Ascencio - 20171678009");
+        jLabel4.setText("Yojhan Leonardo Rodríguez Ascencio              20171678009");
 
-        jLabel5.setText("Braian Estiven Alvarado Rodríguez     - 20171678025");
+        jLabel5.setText("Braian Estiven Alvarado Rodríguez                  20171678025");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -315,8 +319,8 @@ public class ventana_principal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -345,6 +349,7 @@ public class ventana_principal extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        crearTabla();
+       procedureBegin();
     }//GEN-LAST:event_jButton2ActionPerformed
     
     private void crearTabla(){
@@ -373,6 +378,178 @@ public class ventana_principal extends javax.swing.JFrame {
 //        for(Integer i : idsSelected){
 //            System.out.println(i);
 //        }
+        
+    }
+
+    private void procedureBegin(){
+        
+       //Defunción
+       Variable totalPoblacion = List_variables.get(7);
+       Variable defuncion =  List_variables.get(9);
+       Variable tasaDefuncion = List_variables.get(38);
+       //defuncion.setValor(totalPoblacion.getValor()*tasaDefuncion.getValor());
+       //Defunción disc.
+       Variable tasaDefuncionDisc = List_variables.get(39);
+       Variable defuncionDisc = List_variables.get(10);
+       //defuncionDisc.setValor(defuncion.getValor()*tasaDefuncionDisc.getValor());
+       //Defunción med.
+       Variable tasaDefuncionMed = List_variables.get(40);
+       Variable defuncionMed = List_variables.get(11);
+       //defuncionMed.setValor(defuncion.getValor()*tasaDefuncionMed.getValor());
+       //Desarrollo Empleo accesible
+       Variable tasaDesarrollo = List_variables.get(41);
+       Variable interesSociedad = List_variables.get(26);
+       Variable dispEmpleoAcc = List_variables.get(3);
+       Variable empleoAcc = List_variables.get(4);
+       Variable desarrolloEmpleo = List_variables.get(12);
+       //desarrolloEmpleo.setValor((tasaDesarrollo.getValor()+(interesSociedad.getValor()*0.3))/2*(empleoAcc.getValor()-dispEmpleoAcc.getValor()));
+       //Desarrollo Instituciones Accesibles
+       Variable institucionesAcc = List_variables.get(5);
+       Variable desarrolloInsti = List_variables.get(13);
+       //desarrolloInsti.setValor((tasaDesarrollo.getValor()*0.7)*(interesSociedad.getValor()*0.6)*institucionesAcc.getValor());
+       //Empleo Generado
+       Variable empleoGenerado = List_variables.get(14);
+       //empleoGenerado.setValor(desarrolloEmpleo.getValor());
+       //Nacimientos
+       Variable tasaNacimientosConDisc = List_variables.get(43);
+       Variable tasaNacimientosSinDisc = List_variables.get(47);
+       Variable nacimientos = List_variables.get(15);
+       //nacimientos.setValor(totalPoblacion.getValor()*(tasaNacimientosConDisc.getValor()+tasaNacimientosSinDisc.getValor()));
+       //Nuevos Integrantes comunidad
+       Variable totalPoblacionDisc = List_variables.get(8);
+       Variable personasParticipando = List_variables.get(6);
+       Variable tasaCalidadRelaciones = List_variables.get(45);
+       Variable nuevosIntegrantes = List_variables.get(16);
+       //nuevosIntegrantes.setValor((totalPoblacionDisc.getValor()-personasParticipando.getValor())*((interesSociedad.getValor()+tasaCalidadRelaciones.getValor())/4));
+       //Personas con Discapacidad
+       Variable tasaAdquiereDisc =   List_variables.get(44);
+       Variable personasconDisc =    List_variables.get(17);
+       //personasconDisc.setValor((tasaAdquiereDisc.getValor()*totalPoblacion.getValor())+(tasaNacimientosConDisc.getValor()*totalPoblacion.getValor()));
+       //Salud
+       Variable necesidadAtencion = List_variables.get(27);
+       Variable demandaPersonal = List_variables.get(24);
+       Variable porcentajeEficiencia = List_variables.get(33);
+       Variable salud = List_variables.get(22);
+       //salud.setValor((totalPoblacionDisc.getValor()*necesidadAtencion.getValor())*(((1-demandaPersonal.getValor())+porcentajeEficiencia.getValor())/2));
+       //Personas recuperadas
+       Variable personasRecuperadas= List_variables.get(18);
+       //personasRecuperadas.setValor(salud.getValor());
+       //Población empleada discapacitada
+       Variable tasaEmpleadosDisc = List_variables.get(46);
+       
+            //---->Nivel Bienestar Educativo
+            Variable tasaCalidadEdu = List_variables.get(37);
+            Variable nivelBEdu = List_variables.get(28);
+//            if((institucionesAcc.getValor()/(totalPoblacionDisc.getValor()/20))>1){
+//                nivelBEdu.setValor((1+tasaCalidadEdu.getValor())/2);
+//            }
+//            else{
+//                nivelBEdu.setValor(((institucionesAcc.getValor()/(totalPoblacionDisc.getValor()/20))+tasaCalidadEdu.getValor())/2);
+//            }
+            //---->Nivel Bienestar Fisico
+            Variable discapacitadosAtent = List_variables.get(2);
+            Variable nivelBFisico= List_variables.get(30);
+            //nivelBFisico.setValor(((discapacitadosAtent.getValor()/(totalPoblacionDisc.getValor()*0.5))+0.5)/2);
+            
+       Variable poblacionEmpleadaDisc=List_variables.get(19);
+       //poblacionEmpleadaDisc.setValor((tasaEmpleadosDisc.getValor()+(nivelBEdu.getValor()/100)+(nivelBFisico.getValor()/100))*totalPoblacionDisc.getValor());
+       //Profesionales
+       Variable porcentajeProfesionales = List_variables.get(35);
+       //porcentajeProfesionales.setValor(0.00118/tasaDesarrollo.getValor());
+       Variable profesionales = List_variables.get(20);
+       //profesionales.setValor(totalPoblacion.getValor()*porcentajeProfesionales.getValor());
+       //Retiro Miembros
+       Variable retiroMiembros = List_variables.get(21);
+       //retiroMiembros.setValor((0.5*defuncionDisc.getValor())+(personasRecuperadas.getValor()*0.5));
+       //Sobredemanda
+       Variable sobredemanda = List_variables.get(23);
+       //sobredemanda.setValor((demandaPersonal.getValor()+necesidadAtencion.getValor()/3)*discapacitadosAtent.getValor());
+            //----> Nivel Bienestar Emocional
+            Variable tasaAmbienteLaboral = List_variables.get(42);
+            Variable promedioAmistad = List_variables.get(36);
+            Variable nivelBEmocional = List_variables.get(29);
+            //nivelBEmocional.setValor((tasaAmbienteLaboral.getValor()+(discapacitadosAtent.getValor()/totalPoblacionDisc.getValor())+(promedioAmistad.getValor()/5)+(personasParticipando.getValor()/totalPoblacionDisc.getValor()))/4);
+        //Porcentaje Estatus Socioeconomico
+        Variable porcentajeEstatusSocio = List_variables.get(34);
+        //porcentajeEstatusSocio.setValor((((tasaEmpleadosDisc.getValor()*dispEmpleoAcc.getValor())/(totalPoblacionDisc.getValor()-poblacionEmpleadaDisc.getValor()))+tasaDesarrollo.getValor())/2);
+            //----> Nivel Bienestar Social
+            Variable nivelBSocial = List_variables.get(31);
+//            if((dispEmpleoAcc.getValor()/totalPoblacionDisc.getValor())>1){
+//                nivelBSocial.setValor((interesSociedad.getValor()+(personasParticipando.getValor()/totalPoblacionDisc.getValor())+1)/3);
+//            }
+//            else{
+//                nivelBSocial.setValor((interesSociedad.getValor()+(personasParticipando.getValor()/totalPoblacionDisc.getValor())+(dispEmpleoAcc.getValor()/totalPoblacionDisc.getValor()))/3);
+//            }
+            //----> Nivel Bienestar Material
+            Variable nivelBMaterial = List_variables.get(32);
+            //nivelBMaterial.setValor((porcentajeEstatusSocio.getValor()+tasaDesarrollo.getValor())/2);
+        // <<<<<Indice Calidad de Vida>>>>>
+        Variable indiceCalidad = List_variables.get(25);
+        //indiceCalidad.setValor((nivelBEdu.getValor()+nivelBEmocional.getValor()+nivelBFisico.getValor()+nivelBMaterial.getValor()+nivelBSocial.getValor())/5);
+        //------------------------------------------------------------------------
+        //Empieza el ciclo por ende la simulación en los años nYears definidos
+        
+        Variable cantidadDefunciones = List_variables.get(0);
+        Variable cantidadPerMedico = List_variables.get(1);
+        
+        for(int i=0; i<24; i++){
+            totalPoblacion.setValor(totalPoblacion.getValor()+nacimientos.getValor()-defuncion.getValor());
+            totalPoblacionDisc.setValor(totalPoblacionDisc.getValor()+personasconDisc.getValor()-defuncionDisc.getValor()-personasRecuperadas.getValor());
+            cantidadDefunciones.setValor(cantidadDefunciones.getValor()+defuncion.getValor());
+            cantidadPerMedico.setValor(cantidadPerMedico.getValor()+profesionales.getValor()-defuncionMed.getValor());
+            discapacitadosAtent.setValor(discapacitadosAtent.getValor()+salud.getValor()-sobredemanda.getValor());
+            institucionesAcc.setValor(institucionesAcc.getValor()+desarrolloInsti.getValor());
+            dispEmpleoAcc.setValor(dispEmpleoAcc.getValor()+desarrolloEmpleo.getValor()-poblacionEmpleadaDisc.getValor());
+            empleoAcc.setValor(empleoAcc.getValor()+empleoGenerado.getValor());
+            personasParticipando.setValor(personasParticipando.getValor()+nuevosIntegrantes.getValor()-retiroMiembros.getValor());
+            
+            
+            defuncion.setValor(totalPoblacion.getValor()*tasaDefuncion.getValor());
+            defuncionDisc.setValor(defuncion.getValor()*tasaDefuncionDisc.getValor());
+            defuncionMed.setValor(defuncion.getValor()*tasaDefuncionMed.getValor());
+            desarrolloEmpleo.setValor((tasaDesarrollo.getValor()+(interesSociedad.getValor()*0.3))/2*(empleoAcc.getValor()-dispEmpleoAcc.getValor()));
+            desarrolloInsti.setValor((tasaDesarrollo.getValor()*0.7)*(interesSociedad.getValor()*0.6)*institucionesAcc.getValor());
+            empleoGenerado.setValor(desarrolloEmpleo.getValor());
+            nacimientos.setValor(totalPoblacion.getValor()*(tasaNacimientosConDisc.getValor()+tasaNacimientosSinDisc.getValor()));
+            nuevosIntegrantes.setValor((totalPoblacionDisc.getValor()-personasParticipando.getValor())*((interesSociedad.getValor()+tasaCalidadRelaciones.getValor())/4));
+            personasconDisc.setValor((tasaAdquiereDisc.getValor()*totalPoblacion.getValor())+(tasaNacimientosConDisc.getValor()*totalPoblacion.getValor()));
+            salud.setValor((totalPoblacionDisc.getValor()*necesidadAtencion.getValor())*(((1-demandaPersonal.getValor())+porcentajeEficiencia.getValor())/2));
+            personasRecuperadas.setValor(salud.getValor());
+            if((institucionesAcc.getValor()/(totalPoblacionDisc.getValor()/20))>1){
+                nivelBEdu.setValor((1+tasaCalidadEdu.getValor())/2);
+            }
+            else{
+                nivelBEdu.setValor(((institucionesAcc.getValor()/(totalPoblacionDisc.getValor()/20))+tasaCalidadEdu.getValor())/2);
+            }
+            nivelBFisico.setValor(((discapacitadosAtent.getValor()/(totalPoblacionDisc.getValor()*0.5))+0.5)/2);
+            poblacionEmpleadaDisc.setValor((tasaEmpleadosDisc.getValor()+(nivelBEdu.getValor()/100)+(nivelBFisico.getValor()/100))*totalPoblacionDisc.getValor());
+            porcentajeProfesionales.setValor(0.00118/tasaDesarrollo.getValor());
+            profesionales.setValor(totalPoblacion.getValor()*porcentajeProfesionales.getValor());
+            retiroMiembros.setValor((0.5*defuncionDisc.getValor())+(personasRecuperadas.getValor()*0.5));
+            sobredemanda.setValor((demandaPersonal.getValor()+necesidadAtencion.getValor()/3)*discapacitadosAtent.getValor());
+            nivelBEmocional.setValor((tasaAmbienteLaboral.getValor()+(discapacitadosAtent.getValor()/totalPoblacionDisc.getValor())+(promedioAmistad.getValor()/5)+(personasParticipando.getValor()/totalPoblacionDisc.getValor()))/4);
+            porcentajeEstatusSocio.setValor((((tasaEmpleadosDisc.getValor()*dispEmpleoAcc.getValor())/(totalPoblacionDisc.getValor()-poblacionEmpleadaDisc.getValor()))+tasaDesarrollo.getValor())/2);
+            if((dispEmpleoAcc.getValor()/totalPoblacionDisc.getValor())>1){
+                nivelBSocial.setValor((interesSociedad.getValor()+(personasParticipando.getValor()/totalPoblacionDisc.getValor())+1)/3);
+            }
+            else{
+                nivelBSocial.setValor((interesSociedad.getValor()+(personasParticipando.getValor()/totalPoblacionDisc.getValor())+(dispEmpleoAcc.getValor()/totalPoblacionDisc.getValor()))/3);
+            }
+            nivelBMaterial.setValor((porcentajeEstatusSocio.getValor()+tasaDesarrollo.getValor())/2);
+            indiceCalidad.setValor((nivelBEdu.getValor()+nivelBEmocional.getValor()+nivelBFisico.getValor()+nivelBMaterial.getValor()+nivelBSocial.getValor())/5);
+        }
+        
+        //------------------------------------------------------------------------
+        //------------------------------------------------------------------------
+        
+        System.out.println("------------------");
+        /*Imprimir variables con valores*/
+        for(Variable temp: List_variables){
+            System.out.println(temp.getId()+"\t"+ new DecimalFormat("#.#####").format(temp.getValor())+"\t"+temp.getDescripcion());
+            dlmDisp.addElement(temp.getDescripcion());
+        }
+        /*Imprimir variables con valores*/
+        
         
     }
     private void Button_listRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_listRightActionPerformed
