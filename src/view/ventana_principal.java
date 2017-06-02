@@ -49,6 +49,8 @@ public class ventana_principal extends javax.swing.JFrame {
         
         jList_disponible.setModel(dlmDisp);
         jList_seleccionado.setModel(dlmSelec);
+        
+        valoresPorDefecto();
     }
     
     private void createVariables(){
@@ -82,42 +84,38 @@ public class ventana_principal extends javax.swing.JFrame {
         for (Variable v: List_variables){
             
             switch(v.getId()){
-                case 0: v.setValor(0); //Cantidad Defunciones
-                case 1: v.setValor(118); //Cantidad Personal Médico
-                case 2: v.setValor(20); //Discapacitados Atentidos
-                case 3: v.setValor(100); //Disp. Empleo Accesible
-                case 4: v.setValor(100); //Empleo Accesible
-                case 5: v.setValor(100); //Instituciones Accesibles
-                case 6: v.setValor(30); //Población Participando Com.
-                case 7: v.setValor(100000); //Total Población
-                case 8: v.setValor(800); //Total Pobl. Discapacitada
-                
+                case 0: v.setValor(0); break; //Cantidad Defunciones
+                case 1: v.setValor(118); break; //Cantidad Personal Médico
+                case 2: v.setValor(20); break;//Discapacitados Atentidos
+                case 3: v.setValor(100); break;//Disp. Empleo Accesible
+                case 4: v.setValor(150); break;//Empleo Accesible
+                case 5: v.setValor(15); break;//Instituciones Accesibles
+                case 6: v.setValor(30); break; //Población Participando Com.
+                case 7: v.setValor(100000); break;//Total Población
+                case 8: v.setValor(1000); break;//Total Pobl. Discapacitada
+                case 24: v.setValor(0.5); break;//Demanda Personal médico
+                case 26: v.setValor(0.5); break;//Demanda Personal médico
+                case 27: v.setValor(0.5); break;//Necesidad Atención
+                case 33: v.setValor(0.7); break;//orcentaje Eficiencia Metodos
+                case 36: v.setValor(3); break;//Promedio amistad
+                case 37: v.setValor(0.5); break;//Tasa calidad educación
+                case 38: v.setValor(0.0593); break;//Tasa defunciones
+                case 39: v.setValor(0.0026); break;//Tasa defunciones disc
+                case 40: v.setValor(0.0015); break;//Tasa defuncion med
+                case 41: v.setValor(0.5); break;//Tasa desarrollo
+                case 43: v.setValor(0.0002); break;//Tasa nacimiento con discapacidad
+                case 44: v.setValor(0.0005); break;//Tasa personas adquieren discapacidad
+                case 45: v.setValor(0.65); break;//Tasa calidad relaciones
+                case 46: v.setValor(0.1); break;//Tasa empleados disc
+                case 47: v.setValor(0.1548); break;//Tasa nacimiento sin discapacidad
             }
-            
-            //Cantidad Defunciones
-            if(v.getId()==0){v.setValor(0);}
-            //Cantidad Personal Médico
-            if(v.getId()==0){v.setValor(0);}
-             //Cantidad Defunciones
-            if(v.getId()==0){v.setValor(0);}
-            //Cantidad Personal Médico
-            if(v.getId()==0){v.setValor(0);}
-             //Cantidad Defunciones
-            if(v.getId()==0){v.setValor(0);}
-            //Cantidad Personal Médico
-            if(v.getId()==0){v.setValor(0);}
-            
-            
-            
-            
-            //Tasa Nacimientos Discapacidad
-            if(v.getId()==42){v.setValor(0.0002);}
-            //Tasa Nacimientos sin Discapacidad
-            if(v.getId()==46){v.setValor(0.1548);}
-            //Total Población
-            if(v.getId()==7){v.setValor(100000);}
-
         }
+        
+//        Imprimir variables con valores
+//        for(Variable temp: List_variables){
+//            System.out.println(temp.getId()+"\t"+temp.getValor()+"\t"+temp.getDescripcion());
+//            dlmDisp.addElement(temp.getDescripcion());
+//        }
     }
     
 //    private void beginListElement(int n, lista_variables.count() ){
@@ -150,6 +148,7 @@ public class ventana_principal extends javax.swing.JFrame {
         jList_seleccionado = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         jList_disponible = new javax.swing.JList<>();
+        jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -218,6 +217,13 @@ public class ventana_principal extends javax.swing.JFrame {
         jList_disponible.setToolTipText("");
         jScrollPane3.setViewportView(jList_disponible);
 
+        jButton3.setText("Valores por defecto");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -244,14 +250,18 @@ public class ventana_principal extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton1))
                 .addGap(181, 181, 181))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(99, 99, 99)
@@ -263,11 +273,13 @@ public class ventana_principal extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -330,6 +342,10 @@ public class ventana_principal extends javax.swing.JFrame {
       }
     }//GEN-LAST:event_Button_listLeftActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -370,6 +386,7 @@ public class ventana_principal extends javax.swing.JFrame {
     private javax.swing.JButton Button_listRight;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
