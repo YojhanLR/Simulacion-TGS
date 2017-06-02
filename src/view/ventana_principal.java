@@ -10,6 +10,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -32,6 +33,10 @@ public class ventana_principal extends javax.swing.JFrame {
     private ArrayList<Integer> idsSelected;
     private int nYears = 30;
     private ArrayList<Variable> List_variables;
+
+    public ArrayList<Variable> getList_variables() {
+        return List_variables;
+    }
     private ventana_variables ventvar;
     
     public ventana_principal() {
@@ -84,33 +89,33 @@ public class ventana_principal extends javax.swing.JFrame {
     private void valoresPorDefecto(){
         
         for (Variable v: List_variables){
-            v.setValor(0);
+            v.setValorInicial(0);
             switch(v.getId()){
-                case 0: v.setValor(150); break; //Cantidad Defunciones
-                case 1: v.setValor(118); break; //Cantidad Personal Médico
-                case 2: v.setValor(20); break;//Discapacitados Atentidos
-                case 3: v.setValor(150); break;//Disp. Empleo Accesible
-                case 4: v.setValor(150); break;//Empleo Accesible
-                case 5: v.setValor(15); break;//Instituciones Accesibles
-                case 6: v.setValor(30); break; //Población Participando Com.
-                case 7: v.setValor(100000); break;//Total Población
-                case 8: v.setValor(1000); break;//Total Pobl. Discapacitada
-                case 24: v.setValor(0.5); break;//Demanda Personal médico
-                case 26: v.setValor(0.5); break;//Demanda Personal médico
-                case 27: v.setValor(0.5); break;//Necesidad Atención
-                case 33: v.setValor(0.7); break;//orcentaje Eficiencia Metodos
-                case 36: v.setValor(3); break;//Promedio amistad
-                case 37: v.setValor(0.5); break;//Tasa calidad educación
-                case 38: v.setValor(0.0593); break;//Tasa defunciones
-                case 39: v.setValor(0.0026); break;//Tasa defunciones disc
-                case 40: v.setValor(0.0015); break;//Tasa defuncion med
-                case 41: v.setValor(0.5); break;//Tasa desarrollo
-                case 42: v.setValor(0.6); break;//Tasa ambiente laboral
-                case 43: v.setValor(0.0002); break;//Tasa nacimiento con discapacidad
-                case 44: v.setValor(0.0005); break;//Tasa personas adquieren discapacidad
-                case 45: v.setValor(0.65); break;//Tasa calidad relaciones
-                case 46: v.setValor(0.1); break;//Tasa empleados disc
-                case 47: v.setValor(0.1548); break;//Tasa nacimiento sin discapacidad
+                case 0: v.setValorInicial(150); break; //Cantidad Defunciones
+                case 1: v.setValorInicial(118); break; //Cantidad Personal Médico
+                case 2: v.setValorInicial(20); break;//Discapacitados Atentidos
+                case 3: v.setValorInicial(150); break;//Disp. Empleo Accesible
+                case 4: v.setValorInicial(150); break;//Empleo Accesible
+                case 5: v.setValorInicial(15); break;//Instituciones Accesibles
+                case 6: v.setValorInicial(30); break; //Población Participando Com.
+                case 7: v.setValorInicial(100000); break;//Total Población
+                case 8: v.setValorInicial(1000); break;//Total Pobl. Discapacitada
+                case 24: v.setValorInicial(0.5); break;//Demanda Personal médico
+                case 26: v.setValorInicial(0.5); break;//Demanda Personal médico
+                case 27: v.setValorInicial(0.5); break;//Necesidad Atención
+                case 33: v.setValorInicial(0.7); break;//orcentaje Eficiencia Metodos
+                case 36: v.setValorInicial(3); break;//Promedio amistad
+                case 37: v.setValorInicial(0.5); break;//Tasa calidad educación
+                case 38: v.setValorInicial(0.0593); break;//Tasa defunciones
+                case 39: v.setValorInicial(0.0026); break;//Tasa defunciones disc
+                case 40: v.setValorInicial(0.0015); break;//Tasa defuncion med
+                case 41: v.setValorInicial(0.5); break;//Tasa desarrollo
+                case 42: v.setValorInicial(0.6); break;//Tasa ambiente laboral
+                case 43: v.setValorInicial(0.0002); break;//Tasa nacimiento con discapacidad
+                case 44: v.setValorInicial(0.0005); break;//Tasa personas adquieren discapacidad
+                case 45: v.setValorInicial(0.65); break;//Tasa calidad relaciones
+                case 46: v.setValorInicial(0.1); break;//Tasa empleados disc
+                case 47: v.setValorInicial(0.1548); break;//Tasa nacimiento sin discapacidad
             }
         }
         
@@ -119,7 +124,12 @@ public class ventana_principal extends javax.swing.JFrame {
             System.out.println(temp.getId()+"\t"+temp.getValor()+"\t"+temp.getDescripcion());
         }
     }
-
+    
+    private void initialValues(){
+        for (Variable v: List_variables){
+            v.setValor(v.getValorInicial());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -248,17 +258,6 @@ public class ventana_principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(65, 65, 65))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(171, 171, 171))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1))
-                        .addGap(181, 181, 181))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -275,6 +274,17 @@ public class ventana_principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(77, 77, 77))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1))
+                        .addGap(181, 181, 181))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(157, 157, 157))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -401,7 +411,8 @@ public class ventana_principal extends javax.swing.JFrame {
     }
 
     private void procedureBegin(){
-        
+       //Asigna valores iniciales a variables
+       initialValues();
        //Defunción
        Variable totalPoblacion = List_variables.get(7);
        Variable defuncion =  List_variables.get(9);
@@ -537,6 +548,7 @@ public class ventana_principal extends javax.swing.JFrame {
         
     }
     
+    
     private void Button_listRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_listRightActionPerformed
       //Envia elementos de Disponibles a seleccionados
       for(String selectedValue: jList_disponible.getSelectedValuesList()){
@@ -554,7 +566,8 @@ public class ventana_principal extends javax.swing.JFrame {
     }//GEN-LAST:event_Button_listLeftActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       valoresPorDefecto();
+        JOptionPane.showMessageDialog(this, "Se han asignado los valores definidos por defecto.","Información",JOptionPane.INFORMATION_MESSAGE);
+        valoresPorDefecto();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked

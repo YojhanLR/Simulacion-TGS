@@ -5,6 +5,8 @@
  */
 package view;
 
+import controller.Variable;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,6 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class ventana_variables extends javax.swing.JFrame {
     private ventana_principal v;
+    private ArrayList<Variable> List_variables;
     /**
      * Creates new form ventana_variables
      */
@@ -20,6 +23,36 @@ public class ventana_variables extends javax.swing.JFrame {
         initComponents();
         this.v = v;
         this.setLocationRelativeTo(null);
+        llenarCampos();
+    }
+    
+    private void llenarCampos(){
+       List_variables = v.getList_variables();
+       jTextField0.setText(""+List_variables.get(0).getValorInicial());
+       jTextField1.setText(""+List_variables.get(1).getValorInicial());
+       jTextField2.setText(""+List_variables.get(2).getValorInicial());
+       jTextField3.setText(""+List_variables.get(3).getValorInicial());
+       jTextField4.setText(""+List_variables.get(4).getValorInicial());
+       jTextField5.setText(""+List_variables.get(5).getValorInicial());
+       jTextField6.setText(""+List_variables.get(6).getValorInicial());
+       jTextField7.setText(""+List_variables.get(7).getValorInicial());
+       jTextField8.setText(""+List_variables.get(8).getValorInicial());
+       jTextField9.setText(""+List_variables.get(24).getValorInicial());
+       jTextField10.setText(""+List_variables.get(26).getValorInicial());
+       jTextField11.setText(""+List_variables.get(27).getValorInicial());
+       jTextField12.setText(""+List_variables.get(36).getValorInicial());
+       jTextField13.setText(""+List_variables.get(37).getValorInicial());
+       jTextField14.setText(""+List_variables.get(38).getValorInicial());
+       jTextField15.setText(""+List_variables.get(39).getValorInicial());
+       jTextField16.setText(""+List_variables.get(40).getValorInicial());
+       jTextField17.setText(""+List_variables.get(41).getValorInicial());
+       jTextField18.setText(""+List_variables.get(42).getValorInicial());
+       jTextField19.setText(""+List_variables.get(43).getValorInicial());
+       jTextField20.setText(""+List_variables.get(44).getValorInicial());
+       jTextField21.setText(""+List_variables.get(45).getValorInicial());
+       jTextField22.setText(""+List_variables.get(46).getValorInicial());
+       jTextField23.setText(""+List_variables.get(47).getValorInicial());
+       jTextField24.setText(""+List_variables.get(33).getValorInicial());
     }
 
     /**
@@ -56,32 +89,32 @@ public class ventana_variables extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
+        jTextField23 = new javax.swing.JTextField();
+        jTextField12 = new javax.swing.JTextField();
+        jTextField13 = new javax.swing.JTextField();
+        jTextField14 = new javax.swing.JTextField();
+        jTextField15 = new javax.swing.JTextField();
+        jTextField16 = new javax.swing.JTextField();
+        jTextField17 = new javax.swing.JTextField();
+        jTextField18 = new javax.swing.JTextField();
+        jTextField19 = new javax.swing.JTextField();
+        jTextField20 = new javax.swing.JTextField();
+        jTextField21 = new javax.swing.JTextField();
+        jTextField22 = new javax.swing.JTextField();
+        jTextField0 = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
         jTextField9 = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
         jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
-        jTextField15 = new javax.swing.JTextField();
-        jTextField16 = new javax.swing.JTextField();
-        jTextField18 = new javax.swing.JTextField();
-        jTextField19 = new javax.swing.JTextField();
-        jTextField20 = new javax.swing.JTextField();
-        jTextField21 = new javax.swing.JTextField();
-        jTextField22 = new javax.swing.JTextField();
-        jTextField23 = new javax.swing.JTextField();
-        jTextField24 = new javax.swing.JTextField();
-        jTextField25 = new javax.swing.JTextField();
-        jTextField26 = new javax.swing.JTextField();
-        jTextField27 = new javax.swing.JTextField();
-        jTextField28 = new javax.swing.JTextField();
-        jTextField29 = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
-        jTextField30 = new javax.swing.JTextField();
+        jTextField24 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
@@ -96,6 +129,11 @@ public class ventana_variables extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setText("Definir valores");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 420, -1, 30));
 
         jLabel2.setText("Cantidad personal médico");
@@ -169,34 +207,34 @@ public class ventana_variables extends javax.swing.JFrame {
 
         jLabel38.setText("Cantidad defunciones");
         getContentPane().add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 350, 110, -1));
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 110, -1));
-        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, 110, -1));
-        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 110, -1));
-        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 110, -1));
-        getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 140, 110, -1));
-        getContentPane().add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, 110, -1));
-        getContentPane().add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 200, 110, -1));
-        getContentPane().add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, 110, -1));
-        getContentPane().add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, 110, -1));
-        getContentPane().add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 290, 110, -1));
-        getContentPane().add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 320, 110, -1));
-        getContentPane().add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 110, -1));
-        getContentPane().add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 110, -1));
-        getContentPane().add(jTextField20, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 110, -1));
-        getContentPane().add(jTextField21, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 110, -1));
-        getContentPane().add(jTextField22, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 110, -1));
-        getContentPane().add(jTextField23, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 110, -1));
-        getContentPane().add(jTextField24, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 110, -1));
-        getContentPane().add(jTextField25, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 110, -1));
-        getContentPane().add(jTextField26, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 110, -1));
-        getContentPane().add(jTextField27, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 110, -1));
-        getContentPane().add(jTextField28, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 110, -1));
-        getContentPane().add(jTextField29, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 110, -1));
+        getContentPane().add(jTextField23, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 350, 110, -1));
+        getContentPane().add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 110, -1));
+        getContentPane().add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, 110, -1));
+        getContentPane().add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 110, -1));
+        getContentPane().add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 110, -1));
+        getContentPane().add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 140, 110, -1));
+        getContentPane().add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, 110, -1));
+        getContentPane().add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 200, 110, -1));
+        getContentPane().add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, 110, -1));
+        getContentPane().add(jTextField20, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, 110, -1));
+        getContentPane().add(jTextField21, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 290, 110, -1));
+        getContentPane().add(jTextField22, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 320, 110, -1));
+        getContentPane().add(jTextField0, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 110, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 110, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 110, -1));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 110, -1));
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 110, -1));
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 110, -1));
+        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 110, -1));
+        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 110, -1));
+        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 110, -1));
+        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 110, -1));
+        getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 110, -1));
+        getContentPane().add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 110, -1));
 
         jLabel39.setText("Porcentaje Eficiencia Metodos");
-        getContentPane().add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
-        getContentPane().add(jTextField30, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, 110, -1));
+        getContentPane().add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 380, -1, -1));
+        getContentPane().add(jTextField24, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, 110, -1));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 450, -1, -1));
 
         jLabel10.setText("           ");
@@ -207,16 +245,49 @@ public class ventana_variables extends javax.swing.JFrame {
 
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        v.setEnabled(true);
+        
         String ObjButtons[] = {"Cerrar","Cancelar"};
         int PromptResult = JOptionPane.showOptionDialog(this, 
         "Si cierra esta ventana, los cambios en las variables no quedarán guardados", "Atención", 
         JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, 
         ObjButtons,ObjButtons[1]);
         if(PromptResult==0){
-        this.dispose();          
+        this.dispose();  
+        v.setEnabled(true);
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        List_variables.get(0).setValorInicial(Double.parseDouble(jTextField0.getText()));
+        List_variables.get(1).setValorInicial(Double.parseDouble(jTextField1.getText()));
+        List_variables.get(2).setValorInicial(Double.parseDouble(jTextField2.getText()));
+        List_variables.get(3).setValorInicial(Double.parseDouble(jTextField3.getText()));
+        List_variables.get(4).setValorInicial(Double.parseDouble(jTextField4.getText()));
+        List_variables.get(5).setValorInicial(Double.parseDouble(jTextField5.getText()));
+        List_variables.get(6).setValorInicial(Double.parseDouble(jTextField6.getText()));
+        List_variables.get(7).setValorInicial(Double.parseDouble(jTextField7.getText()));
+        List_variables.get(8).setValorInicial(Double.parseDouble(jTextField8.getText()));
+        List_variables.get(24).setValorInicial(Double.parseDouble(jTextField9.getText()));
+        List_variables.get(26).setValorInicial(Double.parseDouble(jTextField10.getText()));
+        List_variables.get(27).setValorInicial(Double.parseDouble(jTextField11.getText()));
+        List_variables.get(33).setValorInicial(Double.parseDouble(jTextField24.getText()));
+        List_variables.get(36).setValorInicial(Double.parseDouble(jTextField12.getText()));
+        List_variables.get(37).setValorInicial(Double.parseDouble(jTextField13.getText()));
+        List_variables.get(38).setValorInicial(Double.parseDouble(jTextField14.getText()));
+        List_variables.get(39).setValorInicial(Double.parseDouble(jTextField15.getText()));
+        List_variables.get(40).setValorInicial(Double.parseDouble(jTextField16.getText()));
+        List_variables.get(41).setValorInicial(Double.parseDouble(jTextField17.getText()));
+        List_variables.get(42).setValorInicial(Double.parseDouble(jTextField18.getText()));
+        List_variables.get(43).setValorInicial(Double.parseDouble(jTextField19.getText()));
+        List_variables.get(44).setValorInicial(Double.parseDouble(jTextField20.getText()));
+        List_variables.get(45).setValorInicial(Double.parseDouble(jTextField21.getText()));
+        List_variables.get(46).setValorInicial(Double.parseDouble(jTextField22.getText()));
+        List_variables.get(47).setValorInicial(Double.parseDouble(jTextField23.getText()));
+                                        
+        this.dispose();  
+        v.setEnabled(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,6 +322,8 @@ public class ventana_variables extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField jTextField0;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -258,20 +331,18 @@ public class ventana_variables extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
+    private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField22;
     private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField26;
-    private javax.swing.JTextField jTextField27;
-    private javax.swing.JTextField jTextField28;
-    private javax.swing.JTextField jTextField29;
-    private javax.swing.JTextField jTextField30;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
