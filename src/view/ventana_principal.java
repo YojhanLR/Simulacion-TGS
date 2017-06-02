@@ -7,9 +7,11 @@ package view;
 
 import controller.Variable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.DefaultListModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -26,6 +28,7 @@ public class ventana_principal extends javax.swing.JFrame {
     private DefaultListModel<String> dlmDisp;
     private DefaultListModel<String> dlmSelec;
     private String[] String_variables;
+    private ArrayList<Integer> idsSelected;
 //    private String[] items_disponibles;
 //    private String[] items_seleccionados;
     
@@ -35,6 +38,7 @@ public class ventana_principal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         
+        idsSelected = new ArrayList();
         List_variables = new ArrayList(); 
         dlmDisp = new DefaultListModel();
         dlmSelec =  new DefaultListModel();
@@ -150,6 +154,8 @@ public class ventana_principal extends javax.swing.JFrame {
         jList_disponible = new javax.swing.JList<>();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Simulación");
@@ -285,22 +291,33 @@ public class ventana_principal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Simulación");
 
+        jLabel4.setText("Yojhan Leonardo Rodríguez Ascencio - 20171678009");
+
+        jLabel5.setText("Braian Estiven Alvarado Rodríguez     - 20171678025");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,20 +329,52 @@ public class ventana_principal extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addComponent(jScrollPane2)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      
+       crearTabla();
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
+    private void crearTabla(){
+        TableColumnModel columnModel = tableMain.getColumnModel();
+        dtm = new DefaultTableModel(dlmSelec.toArray(),0);
+        tableMain.setModel(dtm);
+        System.out.println(Arrays.toString(dlmSelec.toArray())); 
+        
+        ArrayList <Variable> templist = List_variables;
+        for(int i=0; i< dtm.getColumnCount(); i++){
+            columnModel.getColumn(i).setPreferredWidth(200);
+            for(Variable temp: templist){
+                if(temp.getDescripcion().equals(tableMain.getColumnName(i))){
+                    idsSelected.add(temp.getId());
+                    break;
+                }
+            }
+        }
+        
+//        System.out.println("-----------------------------");
+//        for(Variable temp: List_variables){
+//            System.out.println(temp.getId()+"\t"+temp.getDescripcion());
+//            dlmDisp.addElement(temp.getDescripcion());
+//        }
+//        
+//        for(Integer i : idsSelected){
+//            System.out.println(i);
+//        }
+        
+    }
     private void Button_listRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_listRightActionPerformed
       //Envia elementos de Disponibles a seleccionados
       for(String selectedValue: jList_disponible.getSelectedValuesList()){
@@ -343,7 +392,7 @@ public class ventana_principal extends javax.swing.JFrame {
     }//GEN-LAST:event_Button_listLeftActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+       valoresPorDefecto();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -390,6 +439,8 @@ public class ventana_principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JList<String> jList_disponible;
     private javax.swing.JList<String> jList_seleccionado;
     private javax.swing.JPanel jPanel1;
