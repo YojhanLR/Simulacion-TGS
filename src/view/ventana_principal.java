@@ -197,6 +197,7 @@ public class ventana_principal extends javax.swing.JFrame {
         });
 
         jButton2.setText("Iniciar Simulación");
+        jButton2.setEnabled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -379,10 +380,10 @@ public class ventana_principal extends javax.swing.JFrame {
         boolean flag = true;
         
         while (flag){
-            nYears = Integer.parseInt(JOptionPane.showInputDialog(this, "Defina el N (número de años) en el cual se ejecutará la simulación","",JOptionPane.QUESTION_MESSAGE));
-            if(nYears >= 1){flag=false;}
+            nYears = Integer.parseInt(JOptionPane.showInputDialog(this, "Defina el N (número de años) en el cual se ejecutará la simulación","Información",JOptionPane.QUESTION_MESSAGE));
+            if(nYears >= 1 && nYears <=50){flag=false;}
             else{
-            JOptionPane.showMessageDialog(this, "Asigne un valor entero positivo.","Información",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Asigne un valor entero positivo. No mayor de 50","Información",JOptionPane.ERROR_MESSAGE);
             }
         }
         
@@ -572,6 +573,8 @@ public class ventana_principal extends javax.swing.JFrame {
           dlmSelec.addElement(selectedValue);
           dlmDisp.removeElement(selectedValue);
       }
+      if(dlmSelec.isEmpty()){jButton2.setEnabled(false);}
+      else{jButton2.setEnabled(true);}
     }//GEN-LAST:event_Button_listRightActionPerformed
 
     private void Button_listLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_listLeftActionPerformed
@@ -580,6 +583,8 @@ public class ventana_principal extends javax.swing.JFrame {
           dlmDisp.addElement(selectedValue);
           dlmSelec.removeElement(selectedValue);
       }
+      if(dlmSelec.isEmpty()){jButton2.setEnabled(false);}
+      else{jButton2.setEnabled(true);}
     }//GEN-LAST:event_Button_listLeftActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -593,6 +598,8 @@ public class ventana_principal extends javax.swing.JFrame {
             dlmSelec.addElement(dlmDisp.elementAt(i));            
         }
         dlmDisp.removeAllElements();
+        if(dlmSelec.isEmpty()){jButton2.setEnabled(false);}
+        else{jButton2.setEnabled(true);}
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
@@ -601,6 +608,8 @@ public class ventana_principal extends javax.swing.JFrame {
             dlmDisp.addElement(dlmSelec.elementAt(i));            
         }
         dlmSelec.removeAllElements();
+        if(dlmSelec.isEmpty()){jButton2.setEnabled(false);}
+        else{jButton2.setEnabled(true);}
     }//GEN-LAST:event_jLabel7MouseClicked
 
     /**

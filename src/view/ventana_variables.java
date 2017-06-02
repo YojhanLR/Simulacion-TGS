@@ -258,7 +258,7 @@ public class ventana_variables extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        try {
         List_variables.get(0).setValorInicial(Double.parseDouble(jTextField0.getText()));
         List_variables.get(1).setValorInicial(Double.parseDouble(jTextField1.getText()));
         List_variables.get(2).setValorInicial(Double.parseDouble(jTextField2.getText()));
@@ -287,6 +287,9 @@ public class ventana_variables extends javax.swing.JFrame {
                                         
         this.dispose();  
         v.setEnabled(true);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Asigne valores válidos","Información",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
