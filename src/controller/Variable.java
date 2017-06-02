@@ -34,7 +34,8 @@ public class Variable {
     }
 
     public void setValor(double valor) {
-        this.valor = valor;
+        this.valor = Math.max(0, valor);
+        
     }
 
     public String getDescripcion() {
