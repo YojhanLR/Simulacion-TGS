@@ -285,9 +285,10 @@ public class ventana_variables extends javax.swing.JFrame {
         List_variables.get(45).setValorInicial(Double.parseDouble(jTextField21.getText()));
         List_variables.get(46).setValorInicial(Double.parseDouble(jTextField22.getText()));
         List_variables.get(47).setValorInicial(Double.parseDouble(jTextField23.getText()));
-                                        
+        
+        v.setEnabled(true);                              
         this.dispose();  
-        v.setEnabled(true);
+        
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Asigne valores válidos","Información",JOptionPane.ERROR_MESSAGE);
         }
