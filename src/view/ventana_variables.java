@@ -40,6 +40,7 @@ public class ventana_variables extends javax.swing.JFrame {
        jTextField9.setText(""+List_variables.get(24).getValorInicial());
        jTextField10.setText(""+List_variables.get(26).getValorInicial());
        jTextField11.setText(""+List_variables.get(27).getValorInicial());
+       jTextField24.setText(""+List_variables.get(33).getValorInicial());
        jTextField12.setText(""+List_variables.get(36).getValorInicial());
        jTextField13.setText(""+List_variables.get(37).getValorInicial());
        jTextField14.setText(""+List_variables.get(38).getValorInicial());
@@ -52,7 +53,7 @@ public class ventana_variables extends javax.swing.JFrame {
        jTextField21.setText(""+List_variables.get(45).getValorInicial());
        jTextField22.setText(""+List_variables.get(46).getValorInicial());
        jTextField23.setText(""+List_variables.get(47).getValorInicial());
-       jTextField24.setText(""+List_variables.get(33).getValorInicial());
+       
     }
 
     /**
@@ -190,7 +191,7 @@ public class ventana_variables extends javax.swing.JFrame {
         jLabel20.setText("Tasa Ambiente Laboral");
         getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, -1, -1));
 
-        jLabel21.setText("Discapacitados atendidos");
+        jLabel21.setText("Tasa defuncion");
         getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, -1, -1));
 
         jLabel22.setText("Tasa Nacimiento Discapacidad");

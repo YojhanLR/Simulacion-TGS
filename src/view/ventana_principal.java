@@ -126,8 +126,11 @@ public class ventana_principal extends javax.swing.JFrame {
     }
     
     private void initialValues(){
+        int i=0;
         for (Variable v: List_variables){
             v.setValor(v.getValorInicial());
+            System.out.println(i+"\t"+v.getValor()+"\t"+v.getDescripcion());
+            i++;
         }
     }
     /**
